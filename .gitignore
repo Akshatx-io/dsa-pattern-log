@@ -1,0 +1,13 @@
+﻿# Compiled binaries
+*.exe
+*.out
+*.o
+*.obj
+
+# Competitive programming scratch I/O
+input.txt
+output.txt
+
+# OS junk
+.DS_Store
+Thumbs.db
