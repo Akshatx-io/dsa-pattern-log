@@ -26,9 +26,12 @@ for (int i = 0; i < n; i++)
 }
 ```
 **Mental Trigger:**
+````
 "Try every possible pair."
         ↓
 Nested Loops
+````
+
 ---
 
 ## 2 — Two Pointers
@@ -91,6 +94,7 @@ while (left < right)
 ```
 
 **Mental Trigger:**
+````
 Sorted Array
      +
 Pair / Range
@@ -98,6 +102,8 @@ Pair / Range
 Can eliminate candidates
         ↓
    Two Pointers
+````
+
 ---
 
 ## 3 — HashMap / HashSet Complement
@@ -128,7 +134,7 @@ for (int i = 0; i < n; i++)
 }
 ```
 
-**HashSet Version:**Use when you only need to know whether a value exists, not its index/frequency.
+**HashSet Version:** Use when you only need to know whether a value exists, not its index/frequency.
 ```cpp
 unordered_set<int> st;
 
@@ -146,6 +152,7 @@ for (int x : nums)
 ```
 
 **Mental Trigger:**
+````
 Need a pair
      ↓
 What do I need for current?
@@ -155,4 +162,6 @@ Complement = Target - Current
 Have I seen it?
      ↓
 HashMap / HashSet
+````
+
 ---
