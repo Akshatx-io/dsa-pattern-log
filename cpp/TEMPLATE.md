@@ -19,7 +19,9 @@ int32_t main()
     ios::sync_with_stdio(false);
     cin.tie(nullptr);
 
-    Solution.solve();
+    Solution obj;
+
+    obj.solve();
 
     return 0;
 }
