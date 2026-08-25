@@ -4,13 +4,13 @@ The point is the JUMP between tiers — write WHY the next tier is faster.
 Commit: feat(dsa): <slug> — brute, better, optimal + complexity
 -->
 
-# <Two Sum>  ·  [LeetCode #NN](https://leetcode.com/problems/two-sum/description/)  ·  Difficulty: 🟢Easy
+# <Two Sum>  ·  [LeetCode 01](https://leetcode.com/problems/two-sum/description/)  ·  Difficulty: 🟢Easy
 
 **Pattern:** <e.g. Nested loops/ hashing / two pointers>
 
 ## Problem (in my words)
-<You are given an array of integers nums and an integer target.
-Return indices of the two numbers such that they add up to target.>
+You are given an array of integers nums and an integer target.
+Return indices of the two numbers such that they add up to target.
 
 ## Examples
 ```
@@ -25,7 +25,7 @@ Output: [1,2]
 ---
 
 ## Tier 1 — Brute force
-**Idea:** <Nested Loops>
+**Idea:** Nested Loops
 ```cpp
 class Solution {
 public:
@@ -55,10 +55,10 @@ public:
     }
 };
 ```
-**Time:** O(n²)  ·  **Space:** O(1)  ·  **Why it's slow:** <Using nested loops needs traversing the whole array for each element until the solution is found.>
+**Time:** O(n²)  ·  **Space:** O(1)  ·  **Why it's slow:** Using nested loops needs traversing the whole array for each element until the solution is found.
 
 ## Tier 2 — Better
-**Idea:** <Sorting + Two Pointers>
+**Idea:** Sorting + Two Pointers
 ```cpp
 class Solution {
 public:
@@ -108,10 +108,10 @@ public:
     }
 };
 ```
-**Time:** O(n log n)  ·  **Space:** O(n)  ·  **What improved & why:** <REMEMBER TO PRESERVE THE ORIGINAL INDICES AS THEY WILL CHANGE AFTER SORTING WHICH WILL LEAD TO WRONG ANSWERS. This approach is better than traversing nested loops. The sorting takes an average time of nlogn and thn traversing the array with the help of 2 pointers takes n, so total complexity is nlogn.>
+**Time:** O(n log n)  ·  **Space:** O(n)  ·  **What improved & why:** REMEMBER TO PRESERVE THE ORIGINAL INDICES AS THEY WILL CHANGE AFTER SORTING WHICH WILL LEAD TO WRONG ANSWERS. This approach is better than traversing nested loops. The sorting takes an average time of nlogn and thn traversing the array with the help of 2 pointers takes n, so total complexity is nlogn.
 
 ## Tier 3 — Advanced
-**Idea:** <Unordered Map with two passes>
+**Idea:** Unordered Map with two passes
 ```cpp
 class Solution {
 public:
@@ -148,10 +148,10 @@ public:
     }
 };
 ```
-**Time:** O(n)  ·  **Space:** O(n)  ·  **Why this is Advanced:** <Using Unordered map only requires 2 passes, one for storing the elements in the map and one for searching, each taking O(n) time. So total is O(2n)~O(n).>
+**Time:** O(n)  ·  **Space:** O(n)  ·  **Why this is Advanced:** Using Unordered map only requires 2 passes, one for storing the elements in the map and one for searching, each taking O(n) time. So total is O(2n)~O(n).
 
 ## Tier 3 — Optimal
-**Idea:** <Unordered Map with single pass>
+**Idea:** Unordered Map with single pass
 ```cpp
 class Solution {
 public:
@@ -185,6 +185,6 @@ public:
     }
 };
 ```
-**Time:** O(n)  ·  **Space:** O(n)  ·  **Why this is optimal:** <This approach does not even need 2 passes. We are calculating complement, checking whether the complement exists in the map if yes, then answer and if not, then add (nums[i],i) to the map>
+**Time:** O(n)  ·  **Space:** O(n)  ·  **Why this is optimal:** This approach does not even need 2 passes. We are calculating complement, checking whether the complement exists in the map if yes, then answer and if not, then add (nums[i],i) to the map
 
 ---
