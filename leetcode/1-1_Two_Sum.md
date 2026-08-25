@@ -150,7 +150,7 @@ public:
 ```
 **Time:** O(n)  ·  **Space:** O(n)  ·  **Why this is Advanced:** Using Unordered map only requires 2 passes, one for storing the elements in the map and one for searching, each taking O(n) time. So total is O(2n)~O(n).
 
-## Tier 3 — Optimal
+## Tier 4 — Optimal
 **Idea:** Unordered Map with single pass
 ```cpp
 class Solution {
