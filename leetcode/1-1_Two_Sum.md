@@ -4,9 +4,9 @@ The point is the JUMP between tiers — write WHY the next tier is faster.
 Commit: feat(dsa): <slug> — brute, better, optimal + complexity
 -->
 
-# <Two Sum>  ·  [LeetCode 01](https://leetcode.com/problems/two-sum/description/)  ·  Difficulty: 🟢Easy
+# Two Sum  ·  [LeetCode 01](https://leetcode.com/problems/two-sum/description/)  ·  Difficulty: 🟢Easy
 
-**Pattern:** <e.g. Nested loops/ hashing / two pointers>
+**Pattern:** Nested loops/ hashing / two pointers
 
 ## Problem (in my words)
 You are given an array of integers nums and an integer target.
@@ -185,6 +185,6 @@ public:
     }
 };
 ```
-**Time:** O(n)  ·  **Space:** O(n)  ·  **Why this is optimal:** This approach does not even need 2 passes. We are calculating complement, checking whether the complement exists in the map if yes, then answer and if not, then add (nums[i],i) to the map
+**Time:** O(n)  ·  **Space:** O(n)  ·  **Why this is optimal:** This approach does not even need 2 passes. At each step, we are calculating complement, checking whether the complement exists in the map if yes, then answer and if not, then add nums[i]->i to the map
 
 ---
