@@ -165,3 +165,33 @@ HashMap / HashSet
 ````
 
 ---
+
+## 4 — Prefix Sum
+**Idea:** A prefix sum stores the cumulative result from the beginning of the array up to the current position.
+
+**Pattern Recognition:**
+- sum of elements from index 0 to i / cumulative sum
+- Prefix Sum
+
+### Template
+```cpp
+vector<int> prefix(n);
+
+prefix[0] = arr_name[0];
+
+for (int i = 1; i < n; i++)
+{
+    prefix[i] = prefix[i - 1] + arr_name[i];
+}
+```
+**Mental Trigger:**
+````
+Current answer
+      ↓
+Previous answer + Current element
+      ↓
+Prefix Sum / Running Sum
+````
+
+---
+
