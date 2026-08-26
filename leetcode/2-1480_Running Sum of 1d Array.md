@@ -9,182 +9,111 @@ Commit: feat(dsa): <slug> — brute, better, optimal + complexity
 **Pattern:** Nested loops/ hashing / two pointers
 
 ## Problem (in my words)
-You are given an array of integers nums and an integer target.
-Return indices of the two numbers such that they add up to target.
+You are given an integer array nums.
+For every position i, calculate the sum of all elements from index 0 through i.
+runningSum[i] = nums[0] + nums[1] + ... + nums[i]
 
 ## Examples
 ```
-Input:  nums = [2,7,11,15], target = 9
-Output: [0,1]
+Input:  nums = [1,2,3,4]
+Output: [1,3,6,10]
 ```
 ```
-Input:  nums = [3,2,4], target = 6
-Output: [1,2]
+Input:  nums = [3,1,2,10,1]
+Output: [3,4,6,16,17]
 ```
 
 ---
 
 ## Tier 1 — Brute force
-**Idea:** Nested Loops
+**Idea:** Nested Loops: for every index i, calculate the sum from the beginning of the array up to i.
 ```cpp
 class Solution {
 public:
-    vector<int> twoSum(vector<int>& nums, int target) {
+    vector<int> runningSum(vector<int>& nums) {
 
         int n = nums.size();
 
-        // Try every possible pair.
+        vector<int> ans(n);
+
+        // For every position i,
+        // calculate the sum from index 0 to i.
         for (int i = 0; i < n; i++) {
 
-            // Start from i + 1 so that
-            // we never use the same element twice.
-            for (int j = i + 1; j < n; j++) {
+            int sum = 0;
 
-                // Check whether the current pair
-                // adds up to the target.
-                if (nums[i] + nums[j] == target) {
+            // Recalculate the prefix sum
+            // from the beginning every time.
+            for (int j = 0; j <= i; j++) {
 
-                    // Exactly one solution exists,
-                    // so we can immediately return.
-                    return {i, j};
-                }
+                sum += nums[j];
             }
+
+            ans[i] = sum;
         }
 
-        return {};
+        return ans;
     }
 };
 ```
-**Time:** O(n²)  ·  **Space:** O(1)  ·  **Why it's slow:** Using nested loops needs traversing the whole array for each element until the solution is found.
+**Time:** O(n²)  ·  **Space:** O(n)  ·  **Why it's slow:** For every index, we independently recalculated its prefix sum. It works, but we are repeatedly calculating the same values.
 
 ## Tier 2 — Better
-**Idea:** Sorting + Two Pointers
+**Idea:** Instead of calculating each prefix from scratch, maintain one variable: sum. 
+current prefix sum = previous prefix sum + current element
 ```cpp
 class Solution {
 public:
-    vector<int> twoSum(vector<int>& nums, int target) {
+    vector<int> runningSum(vector<int>& nums) {
 
         int n = nums.size();
 
-        // Store:
-        // {value, original index}
-        vector<pair<int, int>> arr;
+        vector<int> ans(n);
+
+        // Stores the running/prefix sum
+        // as we move through the array.
+        int sum = 0;
 
         for (int i = 0; i < n; i++) {
-            arr.push_back({nums[i], i});
+
+            // Add the current element
+            // to the previous running sum.
+            sum += nums[i];
+
+            // Store the running sum
+            // for this position.
+            ans[i] = sum;
         }
 
-        // Sort by value.
-        sort(arr.begin(), arr.end());
-
-        int left = 0;
-        int right = n - 1;
-
-        while (left < right) {
-
-            int sum =
-                arr[left].first +
-                arr[right].first;
-
-            if (sum == target) {
-
-                return {
-                    arr[left].second,
-                    arr[right].second
-                };
-            }
-
-            if (sum < target) {
-                // Need a larger sum.
-                left++;
-            }
-            else {
-                // Need a smaller sum.
-                right--;
-            }
-        }
-
-        return {};
+        return ans;
     }
 };
-```
-**Time:** O(n log n)  ·  **Space:** O(n)  ·  **What improved & why:** REMEMBER TO PRESERVE THE ORIGINAL INDICES AS THEY WILL CHANGE AFTER SORTING WHICH WILL LEAD TO WRONG ANSWERS. This approach is better than traversing nested loops. The sorting takes an average time of nlogn and thn traversing the array with the help of 2 pointers takes n, so total complexity is nlogn.
 
-## Tier 3 — Advanced
-**Idea:** Unordered Map with two passes
+```
+**Time:** O(n)  ·  **Space:** O(n)  ·  **What improved & why:** Instead of recomputing every prefix sum, we carried the previous sum forward.
+previous sum + current value = current sum
+
+## Tier 3 — Optimal
+**Idea:** we can directly convert nums into its running-sum array. This is one useful improvement to the previous solution if modifying the input array is allowed.
+new nums[i] = old nums[i] + running sum up to i-1. Because after processing i-1, nums[i-1] already contains the running sum up to i-1
 ```cpp
 class Solution {
 public:
-    vector<int> twoSum(vector<int>& nums, int target) {
+    vector<int> runningSum(vector<int>& nums) {
 
-        unordered_map<int, int> mp;
+        // Start from the second element.
+        for (int i = 1; i < nums.size(); i++) {
 
-        // First pass:
-        // Store every value with its index.
-        for (int i = 0; i < nums.size(); i++) {
-            mp[nums[i]] = i;
+            // nums[i - 1] already contains
+            // the running sum up to i - 1.
+            nums[i] += nums[i - 1];
         }
 
-        // Second pass:
-        // Search for the required complement.
-        for (int i = 0; i < nums.size(); i++) {
-
-            int complement = target - nums[i];
-
-            // Check whether complement exists.
-            if (mp.count(complement)) {
-
-                int j = mp[complement];
-
-                // Make sure we don't use
-                // the same element twice.
-                if (j != i) {
-                    return {i, j};
-                }
-            }
-        }
-
-        return {};
+        // nums itself is now the running-sum array.
+        return nums;
     }
 };
 ```
-**Time:** O(n)  ·  **Space:** O(n)  ·  **Why this is Advanced:** Using Unordered map only requires 2 passes, one for storing the elements in the map and one for searching, each taking O(n) time. So total is O(2n)~O(n).
-
-## Tier 4 — Optimal
-**Idea:** Unordered Map with single pass
-```cpp
-class Solution {
-public:
-    vector<int> twoSum(vector<int>& nums, int target) {
-
-        // Stores:
-        // number -> index
-        unordered_map<int, int> mp;
-
-        for (int i = 0; i < nums.size(); i++) {
-
-            // The number required to pair
-            // with nums[i] to reach target.
-            int complement = target - nums[i];
-
-            // If complement has already appeared,
-            // we have found the answer.
-            if (mp.count(complement)) {
-
-                return {
-                    mp[complement],
-                    i
-                };
-            }
-
-            // Store current number AFTER checking.
-            mp[nums[i]] = i;
-        }
-
-        return {};
-    }
-};
-```
-**Time:** O(n)  ·  **Space:** O(n)  ·  **Why this is optimal:** This approach does not even need 2 passes. At each step, we are calculating complement, checking whether the complement exists in the map if yes, then answer and if not, then add nums[i]->i to the map
+**Time:** O(n)  ·  **Space:** O(1)  ·  **Why this is optimal:** We traverse from index 1 to n-1 exactly once and no additional array is created. So O(1) auxiliary space. We reused the input array as the output array. Every position stores current value + previous running sum
 
 ---
