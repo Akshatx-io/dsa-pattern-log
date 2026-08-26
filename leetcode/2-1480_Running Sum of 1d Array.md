@@ -6,7 +6,7 @@ Commit: feat(dsa): <slug> — brute, better, optimal + complexity
 
 # Running Sum of 1d Array  ·  [LeetCode 1480](https://leetcode.com/problems/running-sum-of-1d-array/description/)  ·  Difficulty: 🟢Easy
 
-**Pattern:** Nested loops/ hashing / two pointers
+**Pattern:** Nested loops/Prefix Sum
 
 ## Problem (in my words)
 You are given an integer array nums.
