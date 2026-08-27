@@ -6,7 +6,7 @@ Commit: feat(dsa): <slug> — brute, better, optimal + complexity
 
 # Fizz Buzz  ·  [LeetCode 412](https://leetcode.com/problems/fizz-buzz/description/)  ·  Difficulty: 🟢Easy
 
-**Pattern:** Nested loops/Prefix Sum
+**Pattern:** Simulation
 
 ## Problem (in my words)
 You are given an integer n. For every number from 1 to n:
