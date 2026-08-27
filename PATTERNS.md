@@ -195,3 +195,37 @@ Prefix Sum / Running Sum
 
 ---
 
+## 5 — Simulation
+**Idea:** When the problem gives you a sequence of rules and asks you to produce an output for every element, directly simulate those rules.
+
+**Pattern Recognition:**
+- "For every number/element..."
+- "If condition A, do X..."
+- "Otherwise, do Y..."
+- Output required for every input item.
+- No need to search, sort, backtrack, or maintain complex state.
+
+### Template
+```cpp
+for (int i = start; i <= end; i++)
+{
+    if (condition_1)
+    {
+        // Handle condition 1
+    }
+    else if (condition_2)
+    {
+        // Handle condition 2
+    }
+    else
+    {
+        // Default case
+    }
+}
+```
+**Mental Trigger:**
+````
+"Just follow the rules for every element."
+                  ↓
+              Simulation
+````
