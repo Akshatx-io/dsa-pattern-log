@@ -267,3 +267,41 @@ for (int x : nums)
 
 ---
 
+## 7 — Previous Occurrences → New Pairs
+**Idea:** When the current element can pair with every previous occurrence of itself. This is one of the most important templates to memorize.
+
+**Pattern Recognition:**
+- Count pairs where the current element matches something seen earlier.
+````
+ Current x
+   ↓
+How many matching x's have I seen?
+   ↓
+freq[x]
+   ↓
+Add to answer
+   ↓
+Store current x
+````
+
+### Template
+```cpp
+unordered_map<int, int> freq;
+
+int answer = 0;
+
+for (int x : nums)
+{
+    answer += freq[x];
+
+    freq[x]++;
+}
+
+```
+**Mental Trigger:**
+````
+"Current element forms one pair
+with EVERY previous matching element."
+                  ↓
+        answer += frequency[x]
+````
