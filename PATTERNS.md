@@ -229,3 +229,41 @@ for (int i = start; i <= end; i++)
                   ↓
               Simulation
 ````
+
+---
+
+## 6 — Frequency Counting
+**Idea:** Instead of repeatedly searching for equal values, maintain: value → number of occurrences
+
+**Pattern Recognition:**
+- Think frequency counting when you see:
+- Count duplicates.
+- Count occurrences.
+- Number of equal pairs.
+- Number of elements seen before.
+- Group identical values.
+- "How many times has this appeared?"
+- "How many previous elements satisfy the same property?"
+
+### Template
+```cpp
+unordered_map<int, int> freq;
+
+for (int x : nums)
+{
+    //STRICT- Use previous frequency.
+
+    //STRICT- then only frequency updation
+    freq[x]++;
+}
+
+```
+**Mental Trigger:**
+````
+"How many times have I seen x?"
+              ↓
+        Frequency Map
+````
+
+---
+
