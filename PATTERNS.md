@@ -305,3 +305,39 @@ with EVERY previous matching element."
                   ↓
         answer += frequency[x]
 ````
+
+---
+
+## 8 — Digit Manipulation
+**Idea:** For an integer: x % 10 extracts the last digit. x /= 10 removes the last digit.
+
+**Pattern Recognition:**
+Think digit manipulation when the problem asks about:
+- digits of a number
+- reversing digits
+- digit sum
+- palindrome number
+- count digits
+- last digit
+- first/last digit comparison
+
+### Template
+```cpp
+while (x > 0)
+{
+    int digit = x % 10;
+
+    // Process digit
+
+    x /= 10;
+}
+
+```
+**Mental Trigger:**
+````
+"Need to process decimal digits"
+             ↓
+        x % 10
+             +
+        x /= 10
+````
