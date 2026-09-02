@@ -341,3 +341,48 @@ while (x > 0)
              +
         x /= 10
 ````
+
+---
+
+## 9 — Reverse Half
+**Idea:** For symmetric / palindrome numbers, don't necessarily process the whole value. Instead: left half VS reversed right half. This can eliminate overflow and unnecessary work.
+
+**Pattern Recognition:**
+Think reverse-half when:
+- Checking numeric palindrome.
+- Symmetry exists around the middle.
+- Full reversal can overflow.
+- Only matching halves matter.
+
+### Template
+```cpp
+if (x < 0 || (x != 0 && x % 10 == 0))
+{
+    return false;
+}
+
+int reversedHalf = 0;
+
+while (x > reversedHalf)
+{
+    reversedHalf =
+        reversedHalf * 10 + x % 10;
+
+    x /= 10;
+}
+
+return x == reversedHalf ||
+       x == reversedHalf / 10;
+
+```
+
+**Mental Trigger:**
+````
+"Palindrome + numeric digits"
+            ↓
+Do I really need to reverse all digits?
+            ↓
+          NO
+            ↓
+      Reverse only half
+````
