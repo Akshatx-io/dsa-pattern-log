@@ -1,4 +1,4 @@
-//star box
+//solid star rectangle
 
 #include<bits/stdc++.h>
 using namespace std;
