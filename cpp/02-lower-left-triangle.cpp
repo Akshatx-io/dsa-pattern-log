@@ -1,4 +1,4 @@
-//lower left triangle
+//lower-left-triangle
 
 #include<bits/stdc++.h>
 using namespace std;
